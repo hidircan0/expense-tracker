@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <title>Harcama Takip</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/"><span class="brand-mark">₺</span><span>cep hesabı<small>HARCAMA TAKİBİ</small></span></a>
+      <button id="logout" class="button button-quiet hidden" type="button">Çıkış yap</button>
+    </header>
+
+    <section id="auth-view" class="auth-layout">
+      <div class="intro">
+        <p class="eyebrow">PARANIN ROTASI BELLİ OLSUN</p>
+        <h1>Harcamalarını<br><em>kolayca takip et.</em></h1>
+        <p class="muted">Günlük giderlerini kaydet, nereye harcadığını tek bakışta gör.</p>
+        <div class="intro-note"><span>✳</span> Basit. Güvenli. Sana özel.</div>
+      </div>
+      <div class="card auth-card">
+        <div class="tabs"><button class="tab active" data-mode="login">Giriş yap</button><button class="tab" data-mode="register">Hesap oluştur</button></div>
+        <h2 id="auth-title">Tekrar hoş geldin</h2>
+        <p id="auth-subtitle" class="muted">Hesabına giriş yap ve devam et.</p>
+        <form id="auth-form">
+          <label id="name-wrap" class="hidden">Ad soyad<input id="full-name" autocomplete="name" maxlength="120" placeholder="Adın Soyadın"></label>
+          <label>E-posta<input id="email" type="email" autocomplete="email" required placeholder="ornek@email.com"></label>
+          <label>Şifre<input id="password" type="password" autocomplete="current-password" required minlength="8" placeholder="En az 8 karakter"></label>
+          <button id="auth-submit" class="button button-primary full" type="submit">Giriş yap <span>→</span></button>
+          <p id="auth-error" class="message error hidden"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="app-view" class="hidden">
+      <div class="welcome-row"><div><p class="eyebrow">GENEL BAKIŞ</p><h1>Merhaba, <span id="user-name">👋</span></h1><p class="muted">Harcamalarının kontrolü sende.</p></div><div class="today" id="today"></div></div>
+      <div class="stats"><article class="card stat-card"><span class="stat-icon">↗</span><span class="stat-label">Bu ay toplam harcama</span><strong id="month-total">₺0,00</strong><small id="month-count">Henüz harcama yok</small></article><article class="card stat-card accent-card"><span class="stat-icon">◎</span><span class="stat-label">En çok harcadığın kategori</span><strong id="top-category">—</strong><small id="top-category-total">Kategori özeti</small></article></div>
+      <div class="content-grid">
+        <section class="card form-card"><div class="section-heading"><div><p class="eyebrow">YENİ KAYIT</p><h2>Harcama ekle</h2></div><span class="heading-icon">＋</span></div>
+          <form id="expense-form">
+            <label>Tutar<div class="amount-input"><span>₺</span><input id="amount" type="number" min="0.01" step="0.01" required placeholder="0,00"></div></label>
+            <div class="two-col"><label>Kategori<select id="category" required></select></label><label>Tarih<input id="date" type="date" required></label></div>
+            <label>Açıklama<input id="description" maxlength="1000" required placeholder="Örn. Öğle yemeği"></label>
+            <label>Para birimi<select id="currency"><option>TRY</option><option>USD</option><option>EUR</option><option>GBP</option></select></label>
+            <button class="button button-primary full" type="submit">Harcamayı kaydet <span>→</span></button>
+            <p id="expense-message" class="message hidden"></p>
+          </form>
+        </section>
+        <section class="card list-card"><div class="section-heading"><div><p class="eyebrow">HAREKETLER</p><h2>Son harcamalar</h2></div><span id="expense-badge" class="badge">0 kayıt</span></div>
+          <div id="expense-list" class="expense-list"><div class="empty">Henüz harcama eklemedin.<br><span>İlk kaydını soldaki formdan ekleyebilirsin.</span></div></div>
+        </section>
+      </div>
+      <footer>Her harcama, daha bilinçli bir bütçe. <span>✳</span></footer>
+    </section>
+    <div id="toast" class="toast hidden" role="status"></div>
+  </main>
+</body>
+</html>
